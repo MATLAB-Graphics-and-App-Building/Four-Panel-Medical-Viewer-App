@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MATLABApp schemaVersion='1.0.0' release='R2027a.0' minRelease='R2026b'>
+    <UIFigure name='UIFigure'>
+        <CloseRequestFcn>closeApp</CloseRequestFcn>
+        <Name>'Four Panel Medical Volume Viewer'</Name>
+        <Position>[100 100 1239 1022]</Position>
+        <Children>
+            <Menu name='ImportMenu'>
+                <Text>'Import'</Text>
+                <Children>
+                    <Menu name='FromFileMenu'>
+                        <MenuSelectedFcn>loadVolumeFromFile</MenuSelectedFcn>
+                        <Text>'From File...'</Text>
+                    </Menu>
+                    <Menu name='FromFolderMenu'>
+                        <MenuSelectedFcn>loadVolumeFromFolder</MenuSelectedFcn>
+                        <Text>'From Folder...'</Text>
+                    </Menu>
+                    <Menu name='FromPACSServerMenu'>
+                        <MenuSelectedFcn>loadVolumeFromPACS</MenuSelectedFcn>
+                        <Text>'From PACS Server...'</Text>
+                    </Menu>
+                </Children>
+            </Menu>
+            <GridLayout name='MainGridLayout'>
+                <ColumnWidth>{'1x'}</ColumnWidth>
+                <RowHeight>{55, '1x'}</RowHeight>
+                <Children>
+                    <GridLayout name='ToolstripGridLayout'>
+                        <ColumnSpacing>15</ColumnSpacing>
+                        <ColumnWidth>{'fit', 'fit', 'fit'}</ColumnWidth>
+                        <Layout>
+                            <Column>1</Column>
+                            <Row>1</Row>
+                        </Layout>
+                        <Padding>[0 0 0 0]</Padding>
+                        <RowHeight>{'fit', 'fit'}</RowHeight>
+                        <RowSpacing>5</RowSpacing>
+                        <Children>
+                            <StateButton name='CrosshairButton'>
+                                <Layout>
+                                    <Column>1</Column>
+                                    <Row>[1 2]</Row>
+                                </Layout>
+                                <Text>'Crosshair'</Text>
+                                <ValueChangedFcn>onCrosshairButtonValueChanged</ValueChangedFcn>
+                            </StateButton>
+                            <Label name='RenderingStyleLabel'>
+                                <HorizontalAlignment>'center'</HorizontalAlignment>
+                                <Layout>
+                                    <Column>2</Column>
+                                    <Row>1</Row>
+                                </Layout>
+                                <Text>'Rendering Style'</Text>
+                            </Label>
+                            <DropDown name='RenderingStyleDropDown'>
+                                <Items>{'VolumeRendering', 'MaximumIntensityProjection', 'GradientOpacity'}</Items>
+                                <Layout>
+                                    <Column>2</Column>
+                                    <Row>2</Row>
+                                </Layout>
+                                <Value>'VolumeRendering'</Value>
+                                <ValueChangedFcn>onRenderingStyleChanged</ValueChangedFcn>
+                            </DropDown>
+                            <Label name='TimeSeriesBrowserLabel'>
+                                <Enable>'off'</Enable>
+                                <HorizontalAlignment>'center'</HorizontalAlignment>
+                                <Layout>
+                                    <Column>3</Column>
+                                    <Row>1</Row>
+                                </Layout>
+                                <Text>'Time-Series Browser'</Text>
+                            </Label>
+                            <GridLayout name='TimeSeriesGrid'>
+                                <ColumnSpacing>5</ColumnSpacing>
+                                <ColumnWidth>{'fit', 'fit', 'fit', 'fit', 'fit'}</ColumnWidth>
+                                <Layout>
+                                    <Column>3</Column>
+                                    <Row>2</Row>
+                                </Layout>
+                                <Padding>[0 0 0 0]</Padding>
+                                <RowHeight>{'1x'}</RowHeight>
+                                <RowSpacing>0</RowSpacing>
+                                <Children>
+                                    <Button name='PreviousFrameButton'>
+                                        <ButtonPushedFcn>onPreviousFrameButtonPushed</ButtonPushedFcn>
+                                        <Enable>'off'</Enable>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>1</Row>
+                                        </Layout>
+                                        <Text>'Previous'</Text>
+                                        <Tooltip>'Previous frame'</Tooltip>
+                                    </Button>
+                                    <StateButton name='PlayButton'>
+                                        <Enable>'off'</Enable>
+                                        <Layout>
+                                            <Column>2</Column>
+                                            <Row>1</Row>
+                                        </Layout>
+                                        <Text>'Play'</Text>
+                                        <ValueChangedFcn>onPlayButtonPushed</ValueChangedFcn>
+                                    </StateButton>
+                                    <Button name='NextFrameButton'>
+                                        <ButtonPushedFcn>onNextFrameButtonPushed</ButtonPushedFcn>
+                                        <Enable>'off'</Enable>
+                                        <Layout>
+                                            <Column>3</Column>
+                                            <Row>1</Row>
+                                        </Layout>
+                                        <Text>'Next'</Text>
+                                        <Tooltip>'Next frame'</Tooltip>
+                                    </Button>
+                                    <Slider name='TimeFrameSlider'>
+                                        <Enable>'off'</Enable>
+                                        <Layout>
+                                            <Column>4</Column>
+                                            <Row>1</Row>
+                                        </Layout>
+                                        <MajorTicks>[]</MajorTicks>
+                                        <Step>1</Step>
+                                        <ValueChangedFcn>onTimeFrameSliderChanged</ValueChangedFcn>
+                                        <ValueChangingFcn>onTimeFrameSliderChanged</ValueChangingFcn>
+                                    </Slider>
+                                    <Label name='FrameCounterLabel'>
+                                        <Layout>
+                                            <Column>5</Column>
+                                            <Row>1</Row>
+                                        </Layout>
+                                        <Text>''</Text>
+                                    </Label>
+                                </Children>
+                            </GridLayout>
+                        </Children>
+                    </GridLayout>
+                </Children>
+            </GridLayout>
+        </Children>
+    </UIFigure>
+    <RunConfiguration>
+        <StartupFcn>startupFcn</StartupFcn>
+    </RunConfiguration>
+    <AppDetails>
+        <Name>Four Panel Medical Volume Viewer</Name>
+        <Version>1.0</Version>
+    </AppDetails>
+    <InternalData>
+        <AppId>df505990-5280-45b3-8030-86cebd768ce5</AppId>
+    </InternalData>
+    <!-- Thumbnail is used by file previewers. To change how the thumbnail is captured or stored, use the App Details dialog box in App Designer. -->
+    <Thumbnail autoCapture='true'></Thumbnail>
+</MATLABApp>
